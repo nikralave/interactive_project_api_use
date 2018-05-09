@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+    <h1> On the Fly</h1>
+    <button class="button">Filter</button>
+    <div class="filter">
+     <form id = "dietaryForm">
+        <fieldset>
+            <legend>Dietary Requirement Options</legend>
+            <label for="nut free">Nut Free</label>
+            <input type="checkbox" name="nutFree" value="false">
+            <label for="vegan">Vegan</label>
+            <input type="checkbox" name="vegan" value="false">
+            <label for="vegetarian">Vegetarian</label>
+            <input type="checkbox" name="vegetarian" value="false">
+            <label for="sugar conscious">Low Sugar</label>
+            <input type="checkbox" name="sugarConscious" value="false">
+            <br/> Max Calories<input name="maxCalories" type="text" value="600" />
+            <br/>
+        </fieldset>
+    </form>   
+    </div>
+    
+    <form id="recipeForm">
+        <fieldset>
+            <legend>Ingredient Options</legend>
+            <p>Ingredient Search
+                <input name="ingredient" type="text" />
+            </p>
+            Popular Offers <select id="preselect">
+      <option value="" selected>Please select</option>
+      <option value="carrot">Carrot</option>
+      <option value="parsnip">Parnsip</option>
+      <option value="kale">Kale</option>
+      <option value="onion">Onion</option>
+    </select>
+        </fieldset>
+        </form>
+        
+        
+    <button id="submit" onclick="submitIngredient()">Check Ingredient</button>
+
+    <div id="data"></div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="script.js"></script>
+
+</body>
+
+</html>
