@@ -5,16 +5,19 @@ function displayNicely(apiData) {
     let newData = JSON.parse(apiData);
     console.log(newData);
     let htmlString = "";
+    let sugarRDI = 20;
+    let fatRDI = 10;
 
 
 
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < 10; i++) {
         let link = newData.hits[i].recipe.url;
         let image = newData.hits[i].recipe.image;
         htmlString += "<div><strong>Recipe Title:</strong> " + newData.hits[i].recipe.label + "</div>";
         htmlString += "<div>" + `<img src=${image}>` + "</div>";
         htmlString += "<div><strong>Ingredient List: </strong> " + newData.hits[i].recipe.ingredientLines + "</div>";
         htmlString += "<div><strong>Link to website: </strong>" + `<a href=${link}>` + link + "</a>" + "</div>";
+        
         for (var j = 0; j < newData.hits[i].recipe.healthLabels.length; j++) {
             htmlString += "<div><strong>Health Labels: </strong> " + newData.hits[i].recipe.healthLabels[j] + "</div>";
         }
@@ -24,6 +27,11 @@ function displayNicely(apiData) {
         caloriesPerServing = caloriesPerServing.toFixed(0);
         htmlString += "<div><strong>Servings: </strong> " + serving + "</div>";
         htmlString += "<div><strong>Calories per serving: </strong> " + caloriesPerServing + "</div>";
+        let sugar = newData.hits[i].recipe.totalNutrients.SUGAR.quantity;
+        let fat = newData.hits[i].recipe.totalNutrients.FAT.quantity;
+        htmlString += "<div><strong>Sugar % of RDI: </strong> " + (sugar/sugarRDI) + "</div>";
+        htmlString += "<div><strong>Fat % of RDI: </strong> " + (fat/fatRDI) + "</div>";
+        
         document.getElementById("data").innerHTML = htmlString;
     }
 }
@@ -53,7 +61,7 @@ function submitIngredient() {
         requestString += " " + preselect;
     }
 
-    requestString += "&app_id=" + appid + "&app_key=" + appKey + "&from=0&to=3";
+    requestString += "&app_id=" + appid + "&app_key=" + appKey + "&from=0&to=10";
 
     let nuts = document.getElementById("dietaryForm")["nutFree"].checked;
     if (nuts == true) {
@@ -86,10 +94,3 @@ function submitIngredient() {
     request.send();
 }
 
-$(document).ready(function (argument) {
-    
-    $(".button").click(function(){
-        $(".filter").toggleClass("opened")
-    });
-    
-})

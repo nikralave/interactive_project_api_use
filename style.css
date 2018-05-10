@@ -1,28 +1,162 @@
- fieldset {
-    border: none;
-    padding: 0;
-  }
-  
-.filter {
-    background-color: #61c161;
-    height: 100vh;
-    width: 200px;
-    position:fixed;
-    top: 0;
-    bottom: 0;
-    left:0;
-    transform: translateX(-100%);
-    transition: transform .5s ease-in-out;
-    
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Pacifico');
+
+body,
+html {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+
 }
 
-.opened {
-    transform: translateX(0);
-    
+h1 {
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    margin-top: 0;
+    color:#66cc99 ;
+}
+
+h2 {
+    font-size: 1.875rem;
+}
+
+
+.search {
+    padding-top: 50px;
+}
+ .search button {
+    background-color: #66cc99;
+    border: none;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.25rem;
+ }
+
+main {
+  z-index: 2;
+  position: relative;
+  height: 100vh;
+  background-color: #ffffff;
+  padding-top: 20px;
+  -webkit-transition: transform .7s ease-in-out;
+  -moz-transition: transform .7s ease-in-out;
+  -ms-transition: transform .7s ease-in-out;
+  -o-transition: transform .7s ease-in-out;
+  transition: transform .7s ease-in-out;
+  text-align: center;
+}
+
+#data {
+  height: auto;
+  background-color: #ffffff;
+}
+
+.sidebar {
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  left: 0;
+  background-color: #66cc99;
+  padding-top: 50px;
+  
+}
+
+.sidebar h2 {
+    text-align: center;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.bar {
+  display: block;
+  height: 5px;
+  width: 45px;
+  background-color: #66cc99;
+  margin: 10px auto;
 }
 
 .button {
-    position: fixed;
-    z-index: 999;
-    
+  cursor: pointer;
+  display: inline-block;
+  width: auto;
+  margin: 0 auto;
+  -webkit-transition: all .7s ease;
+  -moz-transition: all .7s ease;
+  -ms-transition: all .7s ease;
+  -o-transition: all .7s ease;
+  transition: all .7s ease;
 }
+
+.nav-left {
+  position: fixed;
+  left: 20px;
+  top: 20px;
+}
+
+.nav-left {
+  z-index: 3;
+ 
+}
+
+.middle {
+  margin: 0 auto;
+}
+
+.bar {
+  -webkit-transition: all .7s ease;
+  -moz-transition: all .7s ease;
+  -ms-transition: all .7s ease;
+  -o-transition: all .7s ease;
+  transition: all .7s ease;
+}
+
+.nav-left .active .bar {
+  background-color: #ffffff;
+  -webkit-transition: all .7s ease;
+  -moz-transition: all .7s ease;
+  -ms-transition: all .7s ease;
+  -o-transition: all .7s ease;
+  transition: all .7s ease;
+}
+
+.button.active .top {
+  -webkit-transform: translateY(15px) rotateZ(45deg);
+  -moz-transform: translateY(15px) rotateZ(45deg);
+  -ms-transform: translateY(15px) rotateZ(45deg);
+  -o-transform: translateY(15px) rotateZ(45deg);
+  transform: translateY(15px) rotateZ(45deg);
+}
+
+.button.active .bottom {
+  -webkit-transform: translateY(-15px) rotateZ(-45deg);
+  -moz-transform: translateY(-15px) rotateZ(-45deg);
+  -ms-transform: translateY(-15px) rotateZ(-45deg);
+  -o-transform: translateY(-15px) rotateZ(-45deg);
+  transform: translateY(-15px) rotateZ(-45deg);
+}
+
+.button.active .middle {
+  width: 0;
+}
+
+.move-to-right {
+  -webkit-transform: translateX(300px);
+  -moz-transform: translateX(300px);
+  -ms-transform: translateX(300px);
+  -o-transform: translateX(300px);
+  transform: translateX(300px);
+}
+
+nav {
+  padding-top: 30px;
+}
+
+
+
+
