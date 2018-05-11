@@ -53,8 +53,13 @@ main {
 #data {
   height: auto;
   background-color: #ffffff;
+  z-index: 2;
+  text-align: left;
 }
 
+#spacer {
+  margin-top:20px;
+}
 .sidebar {
   height: 100%;
   width: 300px;
@@ -153,10 +158,18 @@ main {
   transform: translateX(300px);
 }
 
-nav {
-  padding-top: 30px;
+ ul li {
+  list-style-type: none;
+  margin:0;
+  padding:0;
 }
 
+ .filterlist ul li {
+  list-style-type: none;
+}
 
-
+img {
+  display:block;
+  margin: 0 auto;
+}
 

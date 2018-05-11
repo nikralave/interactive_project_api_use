@@ -7,17 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
-
-
-
-
-
-    <!-- nav-right -->
-
 
     <div class="nav-left">
         <div class="button" id="btn">
@@ -27,13 +21,9 @@
         </div>
     </div>
 
-
-
-
     <main>
 
         <h1> On the Fly</h1>
-
 
         <div class="container">
             <div class="row">
@@ -66,20 +56,18 @@
                 </div>
             </div>
         </div>
-        <div id="data"></div>
-
-
+        <div class="container-fluid" id ="data">
+            </div>
+        
 
     </main>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
+    
                 <div class="sidebar">
 
                     <h2>Dietary Requirement Options</h2>
 
                     <form id="dietaryForm">
-                        <ul>
+                        <ul class="filterlist">
                             <li>
                                 <input type="checkbox" name="nutFree" value="false">
                                 <label for="nut free">Nut Free</label>
@@ -106,9 +94,7 @@
                         </ul>
                     </form>
                 </div>
-            </div>
-        </div>
-    </div>
+            
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>

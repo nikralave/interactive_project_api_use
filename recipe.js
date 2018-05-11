@@ -4,23 +4,58 @@ let request = new XMLHttpRequest();
 function displayNicely(apiData) {
     let newData = JSON.parse(apiData);
     console.log(newData);
+
     let htmlString = "";
     let sugarRDI = 20;
     let fatRDI = 10;
 
-
-
-    for (var i = 0; i < 10; i++) {
+    let count = 0;
+    for (var i = 0; i < 12; i++) {
+        // adding bootstrap row every 3rd loop   
+        count++;
+        if (i % 3 == 0) {
+            htmlString += "</div>" + "</div>" + "<div class = 'container'>" + "<div class ='row' id = 'spacer'>";
+        }
+        // link and image display
         let link = newData.hits[i].recipe.url;
         let image = newData.hits[i].recipe.image;
-        htmlString += "<div><strong>Recipe Title:</strong> " + newData.hits[i].recipe.label + "</div>";
-        htmlString += "<div>" + `<img src=${image}>` + "</div>";
-        htmlString += "<div><strong>Ingredient List: </strong> " + newData.hits[i].recipe.ingredientLines + "</div>";
-        htmlString += "<div><strong>Link to website: </strong>" + `<a href=${link}>` + link + "</a>" + "</div>";
-        
+
+
+        htmlString += "<div class='col-xs-12 col-sm-6 col-md-4'>";
+        htmlString += "<div>" + `<img src=${image} class='image'>` + "</div>";
+        htmlString += "<div><strong>Recipe:</strong> " + newData.hits[i].recipe.label + "</div>";
+        htmlString += "<div><strong>Link to website: </strong>" + `<a href=${link}>` + "Link to source" + "</a>" + "</div>";
+
+        // Health & Ingredients Lists
+
+        htmlString += "<div> Health Labels <ul>";
+
+
         for (var j = 0; j < newData.hits[i].recipe.healthLabels.length; j++) {
-            htmlString += "<div><strong>Health Labels: </strong> " + newData.hits[i].recipe.healthLabels[j] + "</div>";
+            htmlString += "<li>" + newData.hits[i].recipe.healthLabels[j] + "</li>";
         }
+        htmlString += "</ul></div>";
+
+        htmlString += "<div> Ingredients<button class= 'fullingredients'>+</button>";
+        
+       
+        
+        htmlString += "<ul>";
+
+        for (var p = 0; p < newData.hits[i].recipe.ingredientLines.length; p++) {
+            htmlString += "<li>" + newData.hits[i].recipe.ingredientLines[p] + "</li>";
+        }
+        htmlString += "</ul></div>";
+        
+         $(document).ready(function() {
+            $(".fullingredients").click(function() {
+                $(this).next().children().slideToggle();
+            });
+        });
+        
+
+        //serving and nutritional information
+
         let serving = newData.hits[i].recipe.yield;
         let calories = newData.hits[i].recipe.calories;
         let caloriesPerServing = parseInt(calories) / parseInt(serving);
@@ -29,9 +64,10 @@ function displayNicely(apiData) {
         htmlString += "<div><strong>Calories per serving: </strong> " + caloriesPerServing + "</div>";
         let sugar = newData.hits[i].recipe.totalNutrients.SUGAR.quantity;
         let fat = newData.hits[i].recipe.totalNutrients.FAT.quantity;
-        htmlString += "<div><strong>Sugar % of RDI: </strong> " + (sugar/sugarRDI) + "</div>";
-        htmlString += "<div><strong>Fat % of RDI: </strong> " + (fat/fatRDI) + "</div>";
-        
+        htmlString += "<div><strong>Sugar % of RDI: </strong> " + (sugar / sugarRDI) + "</div>";
+        htmlString += "<div><strong>Fat % of RDI: </strong> " + (fat / fatRDI) + "</div>";
+        htmlString += "</div>"
+
         document.getElementById("data").innerHTML = htmlString;
     }
 }
@@ -61,7 +97,7 @@ function submitIngredient() {
         requestString += " " + preselect;
     }
 
-    requestString += "&app_id=" + appid + "&app_key=" + appKey + "&from=0&to=10";
+    requestString += "&app_id=" + appid + "&app_key=" + appKey + "&from=0&to=12";
 
     let nuts = document.getElementById("dietaryForm")["nutFree"].checked;
     if (nuts == true) {
@@ -85,7 +121,7 @@ function submitIngredient() {
 
     let calories = document.getElementById("dietaryForm")["maxCalories"].value;
     if (calories != "") {
-        calories = "&calories=0-" + calories;
+        calories = "&calories=120-" + calories;
     }
     requestString += calories;
     console.log(requestString);
@@ -93,4 +129,3 @@ function submitIngredient() {
     request.open("GET", requestString);
     request.send();
 }
-
