@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+    <div class="nav-left">
+        <div class="button">
+            <div class="bar top"></div>
+            <div class="bar middle"></div>
+            <div class="bar bottom"></div>
+        </div>
+    </div>
+
+    <main>
+
+        <h1> On the Fly</h1>
+
+        <!--    <div class="container">-->
+        <!--        <div class="row">-->
+        <!--           <div class="col-xs-8 col-xs-offset-2">-->
+        <!--                <form id="recipeForm">-->
+        <!--                    <h2>Quick Search</h2>-->
+
+
+
+        <!--                    Popular Offers <select id="preselect">-->
+        <!--  <option value="" selected>Please select</option>-->
+        <!--  <option value="carrot">Carrot</option>-->
+        <!--  <option value="parsnip">Parnsip</option>-->
+        <!--  <option value="kale">Kale</option>-->
+        <!--  <option value="onion">Onion</option>-->
+        <!--</select>-->
+        <!--                    <p><input name="ingredient" type="search" placeholder="type ingredient e.g. chicken" /> <i class="fas fa-search"></i></p>-->
+
+
+        <!--                  
+    <!--                </form>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--    </div>-->
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-8 col-xs-offset-2">
+                    <div class="input-group" id="recipeForm">
+                        <div class="input-group-btn search-panel">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    	<span id="search_concept">Popular</span> <span class="caret"></span>
+                    </button>
+                            <ul class="dropdown-menu" id="preselect" role="menu">
+                                <li><a href="#chicken">Chicken</a></li>
+                                <li><a href="#beef">Beef</a></li>
+                                <li><a href="#carrot">Carrot</a></li>
+                                <li><a href="#kale">Kale</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#fruit">Fruit</a></li>
+                            </ul>
+                        </div>
+                        <input type="hidden" name="search_param" value="all" id="search_param">
+                        <input type="text" class="form-control" name="x" placeholder="Search ingredient...">
+                        <span class="input-group-btn">
+                    <button class="btn btn-default" id="submit" onclick="submitIngredient(pageNumber)" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container search">
+            <div class="row">
+                <div class="col-xs-12">
+                    <button id="submit" class="button">Advanced Search Options</button>
+                </div>
+            </div>
+            </div>
+            <!--<div class="container search">-->
+            <!--    <div class="row">-->
+            <!--        <div class="col-xs-12">-->
+            <!--            <button id="submit" onclick="submitIngredient(pageNumber)">Search Recipes</button>-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--</div>-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4">
+                        <img class="img-responsive" src="images/trolley.png">
+                        <h4>Sucker for supermarket offers?</h4>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <img class="img-responsive" src="images/fridge.png">
+                        <h4>Got lots lurking in your fridge?</h4>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <img class="img-responsive" src="images/recipe-book.png">
+                        <h4>Waste not! Just pop an ingredient in the search and get cooking</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>TRENDING RECIPIES</h2>
+                    </div>
+                </div>
+
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div id="hero">
+                            <div class="hero">
+                                <figure class="on">
+                                    <img src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
+                                    <div>
+                                        <h2>Sumptious Pancakes</h2>
+                                        <p>Easy, American-style, fluffy pancakes are great for feeding a crowd at breakfast or brunch.</p>
+                                        <p><a href="pancake.html">Click for Recipe</a></p>
+                                    </div>
+                                </figure>
+                                <figure>
+                                    <img src="https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="" />
+                                    <div>
+                                        <h2>Pan Seared Salmon</h2>
+                                        <p> Make this Lemon Butter Pan Seared Salmon with 5 ingredients and in 20 minutes or less. </p>
+                                        <p><a href="salmon.html">Click for Recipe</a></p>
+                                    </div>
+                                </figure>
+                                <figure>
+                                    <img src="https://images.pexels.com/photos/568370/pexels-photo-568370.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="" />
+                                    <div>
+                                        <h2>Quiche Lorraine</h2>
+                                        <p>The key to making the perfect quiche is simplicity, as you can see with this tasty recipe.</p>
+                                        <p><a href="quiche.html">Click for Recipe</a></p>
+                                    </div>
+                                </figure>
+                                <figure>
+                                    <img src="https://images.pexels.com/photos/775030/pexels-photo-775030.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="" />
+                                    <div>
+                                        <h2>Berry Smoothie</h2>
+                                        <p>Make the most of the berry season with a glass of fruity goodness.</p>
+                                        <p><a href="smoothie.html">Click for Recipe</a></p>
+                                    </div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>Get Social</h2>
+            </div>
+        </div>
+    </div>
+</footer>
+    </main>
+
+
+
+    <div class="sidebar">
+
+        <h2>Dietary Requirement Options</h2>
+
+        <form id="dietaryForm">
+            <ul class="filterlist">
+                <li>
+                    <input type="checkbox" name="nutFree" value="false">
+                    <label for="nut free">Nut Free</label>
+                </li>
+
+                <li>
+                    <input type="checkbox" name="vegan" value="false">
+                    <label for="vegan">Vegan</label>
+                </li>
+
+                <li>
+                    <input type="checkbox" name="vegetarian" value="false">
+                    <label for="vegetarian">Vegetarian</label>
+                </li>
+
+                <li>
+                    <input type="checkbox" name="sugarConscious" value="false">
+                    <label for="sugar conscious">Low Sugar</label>
+                </li>
+
+                <li>Max Calories
+                    <input name="maxCalories" type="text" size="4" value="600">
+                </li>
+            </ul>
+        </form>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.js"></script>
+
+
+    <script type="text/javascript" src="sidebar.js"></script>
+
+    <script type="text/javascript" src="expand.js"></script>
+    <script type="text/javascript" src="carousel.js"></script>
+
+</body>
+
+</html>

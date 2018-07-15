@@ -9,6 +9,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css" type="text/css" />
+
 </head>
 
 <body>
@@ -25,76 +26,107 @@
 
         <h1> On the Fly</h1>
 
+        <!--    <div class="container">-->
+        <!--        <div class="row">-->
+        <!--            <div class="col-xs12">-->
+        <!--                <form id="recipeForm">-->
+        <!--                    <h2>Quick Search</h2>-->
+        <!--                    <p>Ingredient Search-->
+        <!--                        <input name="ingredient" type="text" />-->
+        <!--                    </p>-->
+
+
+        <!--                    Popular Offers <select id="preselect">-->
+        <!--  <option value="" selected>Please select</option>-->
+        <!--  <option value="carrot">Carrot</option>-->
+        <!--  <option value="parsnip">Parnsip</option>-->
+        <!--  <option value="kale">Kale</option>-->
+        <!--  <option value="onion">Onion</option>-->
+        <!--</select>-->
+
+        <!--                </form>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--    </div>-->
+
+        <!--<div class="container search">-->
+        <!--    <div class="row">-->
+        <!--        <div class="col-xs-12">-->
+        <!--            <button id="submit" onclick="submitIngredient(pageNumber)">Check Ingredient</button>-->
+
+        <!--        </div>-->
+        <!--    </div>-->
+        <!--</div>-->
+
         <div class="container">
             <div class="row">
-                <div class="col-xs12">
+                <div class="col-xs-8 col-xs-offset-2">
                     <form id="recipeForm">
-                        <h2>Quick Search</h2>
-                        <p>Ingredient Search
-                            <input name="ingredient" type="text" />
-                        </p>
-
-
-                        Popular Offers <select id="preselect">
-      <option value="" selected>Please select</option>
-      <option value="carrot">Carrot</option>
+                        <div class="input-group">
+                            <div class="input-group-btn search-panel">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                	<span id="search_concept">Popular</span> <span class="caret"></span>
+                                </button>
+                                <select class="dropdown-menu" id="preselect" role="menu">
+                      <option value="" selected>Please select</option>
+                      <option value="carrot">Carrot</option>
       <option value="parsnip">Parnsip</option>
       <option value="kale">Kale</option>
       <option value="onion">Onion</option>
-    </select>
-
+                    </select>
+                    
+                            </div>
                     </form>
+                    <input type="hidden" name="search_param" value="all" id="search_param">
+                    <input type="text" class="form-control" name="ingredient" placeholder="Search ingredient...">
+                    <span class="input-group-btn">
+                    <button class="btn btn-default" id="submit" onclick="submitIngredient(pageNumber)" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+
+                    </div>
+                    <p><a class="button" href="#">Advanced Search Options</a></p>
                 </div>
             </div>
         </div>
-
-        <div class="container search">
-            <div class="row">
-                <div class="col-xs-12">
-                    <button id="submit" onclick="submitIngredient()">Check Ingredient</button>
-
-                </div>
-            </div>
+        <div class="container-fluid" id="data">
         </div>
-        <div class="container-fluid" id ="data">
-            </div>
-        
+
 
     </main>
-    
-                <div class="sidebar">
 
-                    <h2>Dietary Requirement Options</h2>
+    <div class="sidebar">
 
-                    <form id="dietaryForm">
-                        <ul class="filterlist">
-                            <li>
-                                <input type="checkbox" name="nutFree" value="false">
-                                <label for="nut free">Nut Free</label>
-                            </li>
+        <h2>Dietary Requirement Options</h2>
 
-                            <li>
-                                <input type="checkbox" name="vegan" value="false">
-                                <label for="vegan">Vegan</label>
-                            </li>
+        <form id="dietaryForm">
+            <ul class="filterlist">
+                <li>
+                    <input type="checkbox" name="nutFree" value="false">
+                    <label for="nut free">Nut Free</label>
+                </li>
 
-                            <li>
-                                <input type="checkbox" name="vegetarian" value="false">
-                                <label for="vegetarian">Vegetarian</label>
-                            </li>
+                <li>
+                    <input type="checkbox" name="vegan" value="false">
+                    <label for="vegan">Vegan</label>
+                </li>
 
-                            <li>
-                                <input type="checkbox" name="sugarConscious" value="false">
-                                <label for="sugar conscious">Low Sugar</label>
-                            </li>
+                <li>
+                    <input type="checkbox" name="vegetarian" value="false">
+                    <label for="vegetarian">Vegetarian</label>
+                </li>
 
-                            <li>Max Calories
-                                <input name="maxCalories" type="text" size="4" value="600">
-                            </li>
-                        </ul>
-                    </form>
-                </div>
-            
+                <li>
+                    <input type="checkbox" name="sugarConscious" value="false">
+                    <label for="sugar conscious">Low Sugar</label>
+                </li>
+
+                <li>Max Calories
+                    <input name="maxCalories" type="text" size="4" value="600">
+                </li>
+            </ul>
+        </form>
+    </div>
+
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -107,6 +139,8 @@
 
     <script type="text/javascript" src="recipe.js"></script>
     <script type="text/javascript" src="sidebar.js"></script>
+
+    <script type="text/javascript" src="expand.js"></script>
 
 </body>
 

@@ -1,15 +1,29 @@
 let request = new XMLHttpRequest();
-
+let pageNumber = 1;
 
 function displayNicely(apiData) {
     let newData = JSON.parse(apiData);
     console.log(newData);
+
 
     let htmlString = "";
     let sugarRDI = 20;
     let fatRDI = 10;
 
     let count = 0;
+
+        // Health & Ingredients Lists
+        $(document).ready(function() {
+            $(".bottom_button").click(function(){
+                $(this).next().on().slideToggle();
+            });
+        });
+        $(document).ready(function() {
+           $(".bottom_button2").click(function(){
+        $(this).next().stop(true).slideToggle('slow');
+    });
+        });
+
     for (var i = 0; i < 12; i++) {
         // adding bootstrap row every 3rd loop   
         count++;
@@ -19,59 +33,84 @@ function displayNicely(apiData) {
         // link and image display
         let link = newData.hits[i].recipe.url;
         let image = newData.hits[i].recipe.image;
+        let recipeTitle = newData.hits[i].recipe.label;
+        let recipeSource = newData.hits[i].recipe.source;
 
 
         htmlString += "<div class='col-xs-12 col-sm-6 col-md-4'>";
         htmlString += "<div>" + `<img src=${image} class='image'>` + "</div>";
-        htmlString += "<div><strong>Recipe:</strong> " + newData.hits[i].recipe.label + "</div>";
+        htmlString += "<div><strong><h3>" + recipeTitle.toUpperCase() + "</h3></strong></div>";
+        htmlString += "<div><strong>By: "+ `<a href=${link}>` + recipeSource + "</a></strong></div>";
         htmlString += "<div><strong>Link to website: </strong>" + `<a href=${link}>` + "Link to source" + "</a>" + "</div>";
-
-        // Health & Ingredients Lists
-
-        htmlString += "<div> Health Labels <ul>";
+    
+        
+      
+        htmlString += "<button class = 'btn btn-default bottom_button'>Health Labels</button><div style='display:none'><ul>";
 
 
         for (var j = 0; j < newData.hits[i].recipe.healthLabels.length; j++) {
             htmlString += "<li>" + newData.hits[i].recipe.healthLabels[j] + "</li>";
         }
-        htmlString += "</ul></div>";
-
-        htmlString += "<div> Ingredients<button class= 'fullingredients'>+</button>";
+        
+        
+        htmlString += "</ul></div><br/>";
+        
         
        
         
-        htmlString += "<ul>";
+      
+        
+        htmlString += "<button class = 'btn btn-default bottom_button2'>Ingredients</button><div style='display:none'><ul> ";
 
         for (var p = 0; p < newData.hits[i].recipe.ingredientLines.length; p++) {
-            htmlString += "<li>" + newData.hits[i].recipe.ingredientLines[p] + "</li>";
+            htmlString += "<p>" + newData.hits[i].recipe.ingredientLines[p] + "</p>";
         }
         htmlString += "</ul></div>";
         
-         $(document).ready(function() {
-            $(".fullingredients").click(function() {
-                $(this).next().children().slideToggle();
-            });
-        });
+
         
+
 
         //serving and nutritional information
 
         let serving = newData.hits[i].recipe.yield;
         let calories = newData.hits[i].recipe.calories;
         let caloriesPerServing = parseInt(calories) / parseInt(serving);
+        
         caloriesPerServing = caloriesPerServing.toFixed(0);
-        htmlString += "<div><strong>Servings: </strong> " + serving + "</div>";
-        htmlString += "<div><strong>Calories per serving: </strong> " + caloriesPerServing + "</div>";
-        let sugar = newData.hits[i].recipe.totalNutrients.SUGAR.quantity;
+        htmlString += "<div class = 'flex-container'><div class = 'circle'><p>Serves: </p>" + serving + "</div>";
+        htmlString += "<div class = 'circle'><p>Cals par serve: </p><p> " + caloriesPerServing + "</p></div></div>";
+        
+        let sugar = 1;
+        if(newData.hits[i].recipe.totalNutrients.SUGAR!=null){
+            sugar = newData.hits[i].recipe.totalNutrients.SUGAR.quantity;
+        }
         let fat = newData.hits[i].recipe.totalNutrients.FAT.quantity;
-        htmlString += "<div><strong>Sugar % of RDI: </strong> " + (sugar / sugarRDI) + "</div>";
-        htmlString += "<div><strong>Fat % of RDI: </strong> " + (fat / fatRDI) + "</div>";
+        htmlString += "<div><strong>Sugar % of RDI: </strong> " + (sugar / sugarRDI).toFixed(2) + "</div>";
+        htmlString += "<div><strong>Fat % of RDI: </strong> " + (fat / fatRDI).toFixed(2) + "</div>";
         htmlString += "</div>"
 
+        //print out prev and next buttons
+        if (i == 11) {
+            console.log("got here" + pageNumber);
+            htmlString += "<button onclick='submitIngredient(pageNumber+1)'>Next</button>";
+            
+    //        for(var j=1;j<=10;j++)
+     //       {
+     //           htmlString += "<button onclick='submitIngredient("+j+")'>"+j+"</button>";
+      //      }
+            if (pageNumber > 1) {
+                htmlString += "<button onclick='submitIngredient(pageNumber-1)'>Previous</button>";
+            }
+        }
         document.getElementById("data").innerHTML = htmlString;
     }
+    
+
 }
 
+
+    
 
 request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -83,8 +122,8 @@ request.onreadystatechange = function() {
 }
 
 
-
-function submitIngredient() {
+function submitIngredient(pageNumber) {
+//    window.location.href = "../results.html";
     let appid = "3755737a";
     let appKey = "e8d286856a2775535f230e0f8d05c433";
 
@@ -97,7 +136,12 @@ function submitIngredient() {
         requestString += " " + preselect;
     }
 
-    requestString += "&app_id=" + appid + "&app_key=" + appKey + "&from=0&to=12";
+    requestString += "&app_id=" + appid + "&app_key=" + appKey;
+    console.log(pageNumber);
+    pageNumber = parseInt(pageNumber, 10);
+    let start = pageNumber * 12 - 12;
+    let end = pageNumber * 12;
+    requestString += "&from=" + start + "&to=" + end;
 
     let nuts = document.getElementById("dietaryForm")["nutFree"].checked;
     if (nuts == true) {
@@ -129,3 +173,10 @@ function submitIngredient() {
     request.open("GET", requestString);
     request.send();
 }
+
+$(document).ready(function() {
+           $(".bottom_button").click(function(){
+        $(this).next().on().slideToggle();
+    });
+        });
+        
